@@ -22,7 +22,11 @@ public class ProductService {
     public List<ProductDTO> findAll() {
         return productRepository.findAll()
                 .stream()
-                .map(product -> new ProductDTO(product.getId(), product.getName(), product.getFee(), product.getBandwidth()))
+                .map(product -> new ProductDTO(
+                        product.getId(),
+                        product.getName(),
+                        product.getFee(),
+                        product.getBandwidth()))
                 .collect(Collectors.toList());
     }
 

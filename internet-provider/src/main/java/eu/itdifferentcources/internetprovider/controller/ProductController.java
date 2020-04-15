@@ -17,12 +17,12 @@ public class ProductController {
     }
 
     @GetMapping("/")
-    public List<ProductDTO> getAll(){
+    public List<ProductDTO> getAll() {
         return productService.findAll();
     }
 
     @PostMapping("/")
-    public void Create(@RequestBody ProductDTO productDTO){
+    public void Create(@RequestBody ProductDTO productDTO) {
         productService.create(productDTO);
     }
 }
