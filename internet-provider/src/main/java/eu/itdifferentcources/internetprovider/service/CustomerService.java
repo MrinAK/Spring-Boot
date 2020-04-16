@@ -1,7 +1,7 @@
 package eu.itdifferentcources.internetprovider.service;
 
-import eu.itdifferentcources.internetprovider.persistance.entity.Customer;
-import eu.itdifferentcources.internetprovider.persistance.repository.CustomerRepository;
+import eu.itdifferentcources.internetprovider.persistence.entity.Customer;
+import eu.itdifferentcources.internetprovider.persistence.repository.CustomerRepository;
 import eu.itdifferentcources.internetprovider.service.dto.CustomerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

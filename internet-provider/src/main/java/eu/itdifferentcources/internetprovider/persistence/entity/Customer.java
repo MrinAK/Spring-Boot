@@ -1,4 +1,4 @@
-package eu.itdifferentcources.internetprovider.persistance.entity;
+package eu.itdifferentcources.internetprovider.persistence.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

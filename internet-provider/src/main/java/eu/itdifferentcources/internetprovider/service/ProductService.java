@@ -1,7 +1,7 @@
 package eu.itdifferentcources.internetprovider.service;
 
-import eu.itdifferentcources.internetprovider.persistance.entity.Product;
-import eu.itdifferentcources.internetprovider.persistance.repository.ProductRepository;
+import eu.itdifferentcources.internetprovider.persistence.entity.Product;
+import eu.itdifferentcources.internetprovider.persistence.repository.ProductRepository;
 import eu.itdifferentcources.internetprovider.service.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
