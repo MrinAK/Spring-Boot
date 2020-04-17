@@ -3,6 +3,7 @@ package eu.itdifferentcources.internetprovider.service;
 import eu.itdifferentcources.internetprovider.persistence.entity.Product;
 import eu.itdifferentcources.internetprovider.persistence.repository.ProductRepository;
 import eu.itdifferentcources.internetprovider.service.dto.ProductDTO;
+import eu.itdifferentcources.internetprovider.service.exception.ResourceNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +35,14 @@ public class ProductService {
 
         Product product = Product.create(productDTO.getName(), productDTO.getFee(), productDTO.getBandwidth());
         productRepository.save(product);
+    }
+
+    public ProductDTO findById(Long productId) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() ->new ResourceNotFound(String.format("Product with Id %d doesn't exist", productId)));
+        return new ProductDTO(product.getId(),
+                product.getName(),
+                product.getFee(),
+                product.getBandwidth());
     }
 }

@@ -2,6 +2,8 @@ package eu.itdifferentcources.internetprovider.controller;
 
 import eu.itdifferentcources.internetprovider.service.CustomerService;
 import eu.itdifferentcources.internetprovider.service.dto.CustomerDTO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +24,9 @@ public class CustomerController {
     }
 
     @PostMapping("/")
-    public void Create(@RequestBody CustomerDTO customerDTO) {
+    public ResponseEntity<Void> Create(@RequestBody CustomerDTO customerDTO) {
         customerService.create(customerDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }

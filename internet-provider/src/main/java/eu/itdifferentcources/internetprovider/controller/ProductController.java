@@ -2,6 +2,9 @@ package eu.itdifferentcources.internetprovider.controller;
 
 import eu.itdifferentcources.internetprovider.service.ProductService;
 import eu.itdifferentcources.internetprovider.service.dto.ProductDTO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +25,13 @@ public class ProductController {
     }
 
     @PostMapping("/")
-    public void Create(@RequestBody ProductDTO productDTO) {
+    public ResponseEntity<Void> Create(@RequestBody @Validated ProductDTO productDTO) {
         productService.create(productDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{productId}")
+    public ProductDTO findById (@PathVariable("productId") Long productId){
+        return productService.findById(productId);
     }
 }

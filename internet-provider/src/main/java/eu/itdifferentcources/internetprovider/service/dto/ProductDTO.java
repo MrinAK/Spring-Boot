@@ -1,12 +1,25 @@
 package eu.itdifferentcources.internetprovider.service.dto;
 
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
+@Valid
 public class ProductDTO {
 
     private Long id;
+
+    @NotBlank
+    @Size(min = 4, max = 100)
     private String name;
+
+    @Digits(integer = 50, fraction = 2)
+    @DecimalMin(value = "0", inclusive=false)
     private BigDecimal fee;
+
+    @NotNull
+    @Min(0)
+    @Max(2000)
     private Integer bandwidth;
 
     public ProductDTO(Long id, String name, BigDecimal fee, Integer bandwidth) {
