@@ -12,14 +12,14 @@ public class Customer extends BaseEntity {
     private String city;
     private String street;
 
-    public Customer(String firstName, String lastName, String city, String street) {
+    private Customer(String firstName, String lastName, String city, String street) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
         this.street = street;
     }
 
-    public Customer() {
+    protected Customer() {
     }
 
     public String getFirstName() {

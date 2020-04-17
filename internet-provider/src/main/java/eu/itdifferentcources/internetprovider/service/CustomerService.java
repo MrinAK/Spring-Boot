@@ -40,6 +40,4 @@ public class CustomerService {
                 customerDTO.getStreet());
         customerRepository.save(customer);
     }
-
-
 }
