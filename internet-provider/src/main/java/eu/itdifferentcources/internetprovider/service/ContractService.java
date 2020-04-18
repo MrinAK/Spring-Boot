@@ -29,13 +29,13 @@ public class ContractService {
         this.contractRepository = contractRepository;
     }
 
-//    TODO -> it's not work properly
-    public List<ContractDTO> findAll(){
-     return contractRepository.findAll()
-                .stream()
-                .map(contract -> new ContractDTO(null,null,null))
-                .collect(Collectors.toList());
-    }
+////    TODO -> it's not work properly
+//    public List<ContractDTO> findAll(){
+//     return contractRepository.findAll()
+//                .stream()
+//                .map(contract -> new ContractDTO(null,null,null))
+//                .collect(Collectors.toList());
+//    }
 
     public void create(ContractDTO contractDTO) {
         Product product = productRepository.findById(contractDTO.getProductId())
