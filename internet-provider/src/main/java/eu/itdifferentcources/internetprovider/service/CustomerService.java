@@ -1,8 +1,11 @@
 package eu.itdifferentcources.internetprovider.service;
 
 import eu.itdifferentcources.internetprovider.persistence.entity.Customer;
+import eu.itdifferentcources.internetprovider.persistence.entity.Product;
 import eu.itdifferentcources.internetprovider.persistence.repository.CustomerRepository;
 import eu.itdifferentcources.internetprovider.service.dto.CustomerDTO;
+import eu.itdifferentcources.internetprovider.service.dto.ProductDTO;
+import eu.itdifferentcources.internetprovider.service.exception.ResourceNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +42,16 @@ public class CustomerService {
                 customerDTO.getCity(),
                 customerDTO.getStreet());
         customerRepository.save(customer);
+    }
+
+    public CustomerDTO findById(Long customerId) {
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new ResourceNotFound(String.format("Customer with Id %d doesn't exist", customerId)));
+        return new CustomerDTO(customer.getId(),
+                customer.getFirstName(),
+                customer.getLastName(),
+                customer.getCity(),
+                customer.getStreet()
+        );
     }
 }

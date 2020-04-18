@@ -2,6 +2,7 @@ package eu.itdifferentcources.internetprovider.controller;
 
 import eu.itdifferentcources.internetprovider.service.CustomerService;
 import eu.itdifferentcources.internetprovider.service.dto.CustomerDTO;
+import eu.itdifferentcources.internetprovider.service.dto.ProductDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,16 @@ public class CustomerController {
     public ResponseEntity<Void> Create(@RequestBody CustomerDTO customerDTO) {
         customerService.create(customerDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+//    @GetMapping("/{productId}")
+//    public ProductDTO findById (@PathVariable("productId") Long productId){
+//        return productService.findById(productId);
+//    }
+
+    @GetMapping("/{customerId}")
+    public CustomerDTO findById(@PathVariable("customerId") Long customerId){
+        return customerService.findById(customerId);
     }
 
 }
