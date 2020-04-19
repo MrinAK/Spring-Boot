@@ -1,6 +1,6 @@
 package eu.itdifferentcources.internetprovider.service.dto;
 
-public class DetailContractDTO {
+public class ContractInformationDTO {
 
     private Long id;
 
@@ -8,13 +8,16 @@ public class DetailContractDTO {
 
     private ProductDTO productDTO;
 
-    public DetailContractDTO(Long id, CustomerDTO customerDTO, ProductDTO productDTO) {
+    private String month;
+
+    public ContractInformationDTO(Long id, CustomerDTO customerDTO, ProductDTO productDTO, String month) {
         this.id = id;
         this.customerDTO = customerDTO;
         this.productDTO = productDTO;
+        this.month = month;
     }
 
-    public DetailContractDTO() {
+    public ContractInformationDTO() {
     }
 
     public Long getId() {
@@ -39,5 +42,13 @@ public class DetailContractDTO {
 
     public void setProductDTO(ProductDTO productDTO) {
         this.productDTO = productDTO;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
     }
 }

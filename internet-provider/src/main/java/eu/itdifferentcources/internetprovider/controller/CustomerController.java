@@ -30,13 +30,9 @@ public class CustomerController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-//    @GetMapping("/{productId}")
-//    public ProductDTO findById (@PathVariable("productId") Long productId){
-//        return productService.findById(productId);
-//    }
 
     @GetMapping("/{customerId}")
-    public CustomerDTO findById(@PathVariable("customerId") Long customerId){
+    public CustomerDTO findById(@PathVariable("customerId") Long customerId) {
         return customerService.findById(customerId);
     }
 

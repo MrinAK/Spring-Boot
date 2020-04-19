@@ -1,8 +1,5 @@
 package eu.itdifferentcources.internetprovider.service.dto;
 
-import eu.itdifferentcources.internetprovider.persistence.repository.CustomerRepository;
-import eu.itdifferentcources.internetprovider.persistence.repository.ProductRepository;
-
 import javax.validation.Valid;
 
 @Valid

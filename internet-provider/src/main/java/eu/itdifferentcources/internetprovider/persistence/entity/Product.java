@@ -19,7 +19,6 @@ public class Product extends BaseEntity {
     }
 
     protected Product() {
-
     }
 
     public String getName() {
@@ -49,6 +48,4 @@ public class Product extends BaseEntity {
     public static Product create(String name, BigDecimal fee, Integer bandwidth) {
         return new Product(name, fee, bandwidth);
     }
-
-
 }

@@ -1,10 +1,8 @@
 package eu.itdifferentcources.internetprovider.service;
 
 import eu.itdifferentcources.internetprovider.persistence.entity.Customer;
-import eu.itdifferentcources.internetprovider.persistence.entity.Product;
 import eu.itdifferentcources.internetprovider.persistence.repository.CustomerRepository;
 import eu.itdifferentcources.internetprovider.service.dto.CustomerDTO;
-import eu.itdifferentcources.internetprovider.service.dto.ProductDTO;
 import eu.itdifferentcources.internetprovider.service.exception.ResourceNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +33,6 @@ public class CustomerService {
     }
 
     public void create(CustomerDTO customerDTO) {
-
         Customer customer = Customer.create(
                 customerDTO.getFirstName(),
                 customerDTO.getLastName(),

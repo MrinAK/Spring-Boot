@@ -2,6 +2,7 @@ package eu.itdifferentcources.internetprovider.controller;
 
 import eu.itdifferentcources.internetprovider.service.ContractService;
 import eu.itdifferentcources.internetprovider.service.dto.ContractDTO;
+import eu.itdifferentcources.internetprovider.service.dto.ContractInformationDTO;
 import eu.itdifferentcources.internetprovider.service.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,9 +24,8 @@ public class ContractController {
         this.contractService = contractService;
     }
 
-//    Todo
     @GetMapping("/")
-    public List<ContractDTO> getAll(){
+    public List<ContractInformationDTO> getAll(){
        return contractService.findAll();
     }
 
@@ -35,7 +35,6 @@ public class ContractController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-//    TODO
     @GetMapping("/{contractId}")
     public ContractDTO findById (@PathVariable("contractId") Long contractId){
         return (ContractDTO) contractService.findAll();
