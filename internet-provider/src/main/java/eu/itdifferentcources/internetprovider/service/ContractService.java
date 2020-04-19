@@ -32,28 +32,26 @@ public class ContractService {
 
     //    TODO -> it's not work properly
 
-    public List<ContractInformationDTO> findAll(){
-     return contractRepository.findAll()
+    public List<ContractInformationDTO> findAll() {
+        return contractRepository.findAll()
                 .stream()
-                .map(contract ->{
+                .map(contract -> {
                     // TODO: customer = contract.getCustomer(); -> CustomerDTO  see CustomerService findAll map method
                     // TODO: product = contract.getProduct(); -> ProductDTO see ProductService finaAll mao method
-                    //TODO create new instance of DetailContractDTO(contract.getId, customer, product);
-
+                    // TODO create new instance of DetailContractDTO(contract.getId, customer, product);
                     return new ContractInformationDTO();
-                } )
+                })
                 .collect(Collectors.toList());
     }
 
 
-
     public void create(ContractDTO contractDTO) {
+
         Product product = productRepository.findById(contractDTO.getProductId())
                 .orElseThrow(() -> new ResourceNotFound(String.format("Product with Id %d doesn't exist", contractDTO.getProductId())));
 
         Customer customer = customerRepository.findById(contractDTO.getCustomerId())
                 .orElseThrow(() -> new ResourceNotFound(String.format("Customer with Id %d doesn't exist", contractDTO.getCustomerId())));
-
-        contractRepository.save(new Contract(customer,product, Instant.now(),contractDTO.getMonth()));
+        contractRepository.save(new Contract(customer, product, Instant.now(), contractDTO.getMonth()));
     }
 }
