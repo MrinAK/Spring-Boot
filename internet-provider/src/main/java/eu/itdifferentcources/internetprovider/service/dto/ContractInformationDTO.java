@@ -1,5 +1,8 @@
 package eu.itdifferentcources.internetprovider.service.dto;
 
+import eu.itdifferentcources.internetprovider.persistence.entity.Customer;
+import eu.itdifferentcources.internetprovider.persistence.entity.Product;
+
 public class ContractInformationDTO {
 
     private Long id;
@@ -18,6 +21,11 @@ public class ContractInformationDTO {
     }
 
     public ContractInformationDTO() {
+
+    }
+
+    public ContractInformationDTO(Long id, Customer customer, Product product) {
+
     }
 
     public Long getId() {

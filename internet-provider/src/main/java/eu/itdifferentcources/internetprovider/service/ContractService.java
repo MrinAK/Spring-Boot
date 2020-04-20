@@ -36,9 +36,14 @@ public class ContractService {
         return contractRepository.findAll()
                 .stream()
                 .map(contract -> {
+//                    Customer customer = contract.getCustomer();
+//                    Product product = contract.getProduct();
+//                    return new ContractInformationDTO(contract.getId(),customer,product);
+
                     // TODO: customer = contract.getCustomer(); -> CustomerDTO  see CustomerService findAll map method
-                    // TODO: product = contract.getProduct(); -> ProductDTO see ProductService finaAll mao method
+                    // TODO: product = contract.getProduct(); -> ProductDTO see ProductService finaAll map method
                     // TODO create new instance of DetailContractDTO(contract.getId, customer, product);
+
                     return new ContractInformationDTO();
                 })
                 .collect(Collectors.toList());
@@ -46,7 +51,6 @@ public class ContractService {
 
 
     public void create(ContractDTO contractDTO) {
-
         Product product = productRepository.findById(contractDTO.getProductId())
                 .orElseThrow(() -> new ResourceNotFound(String.format("Product with Id %d doesn't exist", contractDTO.getProductId())));
 

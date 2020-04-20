@@ -24,13 +24,14 @@ public class Contract extends BaseEntity {
     protected Contract() {
     }
 
-    public Contract(Customer customer, Product product, Instant createdAt, Integer length ){
+    public Contract(Customer customer, Product product, Instant createdAt, Integer length) {
         this.customer = customer;
         this.product = product;
         this.createdAt = createdAt;
         this.length = length;
     }
 
+    //
     public Contract(Customer customer, Product product, Instant now, ContractRepository month) {
 
     }
