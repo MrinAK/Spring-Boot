@@ -8,6 +8,8 @@ import eu.itdifferentcources.internetprovider.persistence.repository.CustomerRep
 import eu.itdifferentcources.internetprovider.persistence.repository.ProductRepository;
 import eu.itdifferentcources.internetprovider.service.dto.ContractDTO;
 import eu.itdifferentcources.internetprovider.service.dto.ContractInformationDTO;
+import eu.itdifferentcources.internetprovider.service.dto.CustomerDTO;
+import eu.itdifferentcources.internetprovider.service.dto.ProductDTO;
 import eu.itdifferentcources.internetprovider.service.exception.ResourceNotFound;
 import org.springframework.stereotype.Service;
 
@@ -30,21 +32,26 @@ public class ContractService {
         this.contractRepository = contractRepository;
     }
 
-    //    TODO -> it's not work properly
-
     public List<ContractInformationDTO> findAll() {
         return contractRepository.findAll()
                 .stream()
                 .map(contract -> {
-//                    Customer customer = contract.getCustomer();
-//                    Product product = contract.getProduct();
-//                    return new ContractInformationDTO(contract.getId(),customer,product);
+                    Customer customer = contract.getCustomer();
+                    Product product = contract.getProduct();
 
-                    // TODO: customer = contract.getCustomer(); -> CustomerDTO  see CustomerService findAll map method
-                    // TODO: product = contract.getProduct(); -> ProductDTO see ProductService finaAll map method
-                    // TODO create new instance of DetailContractDTO(contract.getId, customer, product);
+                    CustomerDTO customerDTO = new CustomerDTO(
+                            customer.getId(),
+                            customer.getFirstName(),
+                            customer.getLastName(),
+                            customer.getCity(),
+                            customer.getStreet());
 
-                    return new ContractInformationDTO();
+                    ProductDTO productDTO = new ProductDTO(product.getId(),
+                            product.getName(),
+                            product.getFee(),
+                            product.getBandwidth());
+
+                    return new ContractInformationDTO(contract.getId(),customerDTO,productDTO,contract.getLength());
                 })
                 .collect(Collectors.toList());
     }

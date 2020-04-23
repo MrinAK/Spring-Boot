@@ -1,8 +1,8 @@
 package eu.itdifferentcources.internetprovider.service.dto;
 
-import eu.itdifferentcources.internetprovider.persistence.entity.Customer;
-import eu.itdifferentcources.internetprovider.persistence.entity.Product;
+import javax.validation.Valid;
 
+@Valid
 public class ContractInformationDTO {
 
     private Long id;
@@ -11,9 +11,9 @@ public class ContractInformationDTO {
 
     private ProductDTO productDTO;
 
-    private String month;
+    private Integer month;
 
-    public ContractInformationDTO(Long id, CustomerDTO customerDTO, ProductDTO productDTO, String month) {
+    public ContractInformationDTO(Long id, CustomerDTO customerDTO, ProductDTO productDTO, Integer month) {
         this.id = id;
         this.customerDTO = customerDTO;
         this.productDTO = productDTO;
@@ -21,11 +21,6 @@ public class ContractInformationDTO {
     }
 
     public ContractInformationDTO() {
-
-    }
-
-    public ContractInformationDTO(Long id, Customer customer, Product product) {
-
     }
 
     public Long getId() {
@@ -52,11 +47,11 @@ public class ContractInformationDTO {
         this.productDTO = productDTO;
     }
 
-    public String getMonth() {
+    public Integer getMonth() {
         return month;
     }
 
-    public void setMonth(String month) {
+    public void setMonth(Integer month) {
         this.month = month;
     }
 }

@@ -1,5 +1,8 @@
 package eu.itdifferentcources.internetprovider.service.dto;
 
+import javax.validation.Valid;
+
+@Valid
 public class CustomerDTO {
 
     private Long id;

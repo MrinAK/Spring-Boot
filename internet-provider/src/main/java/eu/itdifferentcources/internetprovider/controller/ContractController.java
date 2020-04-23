@@ -3,7 +3,6 @@ package eu.itdifferentcources.internetprovider.controller;
 import eu.itdifferentcources.internetprovider.service.ContractService;
 import eu.itdifferentcources.internetprovider.service.dto.ContractDTO;
 import eu.itdifferentcources.internetprovider.service.dto.ContractInformationDTO;
-import eu.itdifferentcources.internetprovider.service.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
