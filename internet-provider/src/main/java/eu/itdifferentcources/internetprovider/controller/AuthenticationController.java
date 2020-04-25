@@ -1,7 +1,7 @@
 package eu.itdifferentcources.internetprovider.controller;
 
 import eu.itdifferentcources.internetprovider.service.AuthenticationService;
-import eu.itdifferentcources.internetprovider.service.JwtResponseDTO;
+import eu.itdifferentcources.internetprovider.service.dto.JwtResponseDTO;
 import eu.itdifferentcources.internetprovider.service.dto.LoginRequestDTO;
 import eu.itdifferentcources.internetprovider.service.dto.SignupRequestDTO;
 import org.springframework.http.HttpStatus;

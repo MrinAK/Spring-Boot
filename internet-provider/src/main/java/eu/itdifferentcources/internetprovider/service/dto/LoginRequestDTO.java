@@ -2,7 +2,9 @@ package eu.itdifferentcources.internetprovider.service.dto;
 
 import lombok.Data;
 
-@Data
+import javax.validation.Valid;
+
+@Valid
 public class LoginRequestDTO {
 
 private String username;
@@ -12,6 +14,9 @@ private String password;
     public LoginRequestDTO(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public LoginRequestDTO() {
     }
 
     public String getUsername() {

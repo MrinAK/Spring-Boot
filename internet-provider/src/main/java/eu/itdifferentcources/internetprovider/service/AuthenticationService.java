@@ -4,6 +4,7 @@ import eu.itdifferentcources.internetprovider.persistence.entity.Role;
 import eu.itdifferentcources.internetprovider.persistence.entity.User;
 import eu.itdifferentcources.internetprovider.persistence.repository.RoleRepository;
 import eu.itdifferentcources.internetprovider.persistence.repository.UserRepository;
+import eu.itdifferentcources.internetprovider.service.dto.JwtResponseDTO;
 import eu.itdifferentcources.internetprovider.service.dto.LoginRequestDTO;
 import eu.itdifferentcources.internetprovider.service.dto.SignupRequestDTO;
 import eu.itdifferentcources.internetprovider.service.util.JwtUtils;

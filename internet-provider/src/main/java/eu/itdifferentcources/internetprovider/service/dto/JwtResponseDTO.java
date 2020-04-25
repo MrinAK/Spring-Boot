@@ -1,8 +1,8 @@
 package eu.itdifferentcources.internetprovider.service.dto;
 
-import lombok.Data;
+import javax.validation.Valid;
 
-@Data
+@Valid
 public class JwtResponseDTO {
 
     private String token;
