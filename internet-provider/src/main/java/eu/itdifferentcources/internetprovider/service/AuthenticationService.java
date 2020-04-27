@@ -41,6 +41,31 @@ public class AuthenticationService {
         this.jwtUtils = jwtUtils;
     }
 
+
+    public UserRepository getUserRepository() {
+        return userRepository;
+    }
+
+    public RoleRepository getRoleRepository() {
+        return roleRepository;
+    }
+
+    public PasswordEncoder getPasswordEncoder() {
+        return passwordEncoder;
+    }
+
+    public AuthenticationManager getAuthenticationManager() {
+        return authenticationManager;
+    }
+
+    public JwtUtils getJwtUtils() {
+        return jwtUtils;
+    }
+
+    public static Map<Role.RoleType, Role> getRoles() {
+        return roles;
+    }
+
     private static final Map<Role.RoleType, Role> roles = new HashMap<>();
 
     //Todo

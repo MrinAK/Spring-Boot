@@ -8,28 +8,28 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-
+//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+//@AllArgsConstructor
+//@Data
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity implements UserDetails {
 
-    @NotBlank
-    @Size(min = 5, max = 20)
+//    @NotBlank
+//    @Size(min = 5, max = 20)
     private String username;
 
 
-    @NotBlank
-    @Size(min = 5, max = 80)
+//    @NotBlank
+//    @Size(min = 5, max = 80)
     private String password;
 
-    @NotBlank
-    @Size(max = 50)
+//    @NotBlank
+//    @Size(max = 50)
     @Email
     private String email;
 

@@ -1,5 +1,6 @@
 package eu.itdifferentcources.internetprovider.service.dto;
 
+
 import javax.validation.Valid;
 
 @Valid
@@ -18,4 +19,6 @@ public class JwtResponseDTO {
     public void setToken(String token) {
         this.token = token;
     }
+
+
 }

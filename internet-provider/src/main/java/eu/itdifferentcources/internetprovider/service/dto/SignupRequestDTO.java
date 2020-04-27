@@ -2,12 +2,11 @@ package eu.itdifferentcources.internetprovider.service.dto;
 
 import lombok.Data;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Valid
+@Data
 public class SignupRequestDTO {
 
     @NotBlank
@@ -27,9 +26,6 @@ public class SignupRequestDTO {
         this.username = username;
         this.email = email;
         this.password = password;
-    }
-
-    public SignupRequestDTO() {
     }
 
     public String getUsername() {
