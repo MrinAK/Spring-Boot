@@ -30,7 +30,6 @@ public class CustomerController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-
     @GetMapping("/{customerId}")
     public CustomerDTO findById(@PathVariable("customerId") Long customerId) {
         return customerService.findById(customerId);

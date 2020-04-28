@@ -12,6 +12,9 @@ public class JwtResponseDTO {
         this.token = token;
     }
 
+    public JwtResponseDTO() {
+    }
+
     public String getToken() {
         return token;
     }

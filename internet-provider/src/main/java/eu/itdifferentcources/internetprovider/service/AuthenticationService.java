@@ -33,7 +33,11 @@ public class AuthenticationService {
 
     private final JwtUtils jwtUtils;
 
-    public AuthenticationService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
+    public AuthenticationService(UserRepository userRepository,
+                                 RoleRepository roleRepository,
+                                 PasswordEncoder passwordEncoder,
+                                 AuthenticationManager authenticationManager,
+                                 JwtUtils jwtUtils) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
@@ -41,37 +45,12 @@ public class AuthenticationService {
         this.jwtUtils = jwtUtils;
     }
 
-
-    public UserRepository getUserRepository() {
-        return userRepository;
-    }
-
-    public RoleRepository getRoleRepository() {
-        return roleRepository;
-    }
-
-    public PasswordEncoder getPasswordEncoder() {
-        return passwordEncoder;
-    }
-
-    public AuthenticationManager getAuthenticationManager() {
-        return authenticationManager;
-    }
-
-    public JwtUtils getJwtUtils() {
-        return jwtUtils;
-    }
-
-    public static Map<Role.RoleType, Role> getRoles() {
-        return roles;
-    }
-
     private static final Map<Role.RoleType, Role> roles = new HashMap<>();
 
     //Todo
     @PostConstruct
     protected void postConstruct() {
-        roleRepository.findAll().forEach(role -> roles.put(role.getName(), role));
+        roleRepository.findAll().stream().forEach(role -> roles.put(role.getName(), role));
     }
 
     public void signup(SignupRequestDTO createUserDTO) {

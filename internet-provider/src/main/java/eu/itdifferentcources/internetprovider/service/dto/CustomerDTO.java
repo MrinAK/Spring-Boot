@@ -19,6 +19,8 @@ public class CustomerDTO {
         this.street = street;
     }
 
+    public CustomerDTO() {
+    }
 
     public Long getId(){
         return id;

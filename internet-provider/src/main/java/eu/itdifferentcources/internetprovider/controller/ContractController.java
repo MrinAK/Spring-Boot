@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+
 @RequestMapping("/api/v1/contracts")
+@RestController
 public class ContractController {
 
     private final ContractService contractService;
-
-
 
     @Autowired
     public ContractController(ContractService contractService) {
