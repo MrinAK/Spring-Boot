@@ -24,20 +24,20 @@ public class ContractController {
     }
 
     @GetMapping("/")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
     public List<ContractInformationDTO> getAll(){
        return contractService.findAll();
     }
 
     @PostMapping("/")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
     public ResponseEntity<Void> create( @RequestBody ContractDTO contractDTO){
         contractService.create(contractDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/{contractId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
     public ContractDTO findById (@PathVariable("contractId") Long contractId){
         return (ContractDTO) contractService.findAll();
     }

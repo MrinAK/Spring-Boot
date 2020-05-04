@@ -50,7 +50,9 @@ public class AuthenticationService {
 
     @PostConstruct
     protected void postConstruct() {
-        roleRepository.findAll().stream().forEach(role -> roles.put(role.getName(), role));
+        roleRepository.findAll()
+                .stream()
+                .forEach(role -> roles.put(role.getName(), role));
     }
 
     public void signup(SignupRequestDTO createUserDTO) {
@@ -65,7 +67,8 @@ public class AuthenticationService {
             throw new RuntimeException(String.format("Username %s already exist", createUserDTO.getUsername()));
         }
 
-        User user = new User(createUserDTO.getUsername(), passwordEncoder.encode(createUserDTO.getPassword()),
+        User user = new User(createUserDTO.getUsername(),
+                passwordEncoder.encode(createUserDTO.getPassword()),
                 createUserDTO.getEmail(),
                 Set.of(role));
         userRepository.save(user);

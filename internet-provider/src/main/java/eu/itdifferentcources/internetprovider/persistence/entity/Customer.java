@@ -37,6 +37,10 @@ public class Customer extends BaseEntity {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getFirstName() {
         return firstName;
     }

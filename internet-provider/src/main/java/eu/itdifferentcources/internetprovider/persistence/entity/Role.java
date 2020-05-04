@@ -28,7 +28,6 @@ public class Role extends BaseEntity implements GrantedAuthority {
     }
 
     protected Role(){
-
     }
 
     public RoleType getName() {

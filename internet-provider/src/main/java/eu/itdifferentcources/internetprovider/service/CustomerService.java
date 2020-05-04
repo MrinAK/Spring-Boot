@@ -43,7 +43,6 @@ public class CustomerService {
     }
 
     public void create(CustomerDTO customerDTO) {
-
         Customer customer = Customer.create(
                 customerDTO.getFirstName(),
                 customerDTO.getLastName(),

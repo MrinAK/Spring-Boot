@@ -20,7 +20,7 @@ public class CustomerController {
     }
 
     @GetMapping("/")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
     public List<CustomerDTO> getAll() {
         return customerService.findAll();
     }
@@ -33,7 +33,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{customerId}")
-    @PreAuthorize("hasAnyRole('ADMIN' , 'MODERATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN','MODERATOR')")
     public CustomerDTO findById(@PathVariable("customerId") Long customerId) {
         return customerService.findById(customerId);
     }
