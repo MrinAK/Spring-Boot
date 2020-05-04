@@ -2,18 +2,20 @@ package eu.itdifferentcources.internetprovider.service;
 
 import eu.itdifferentcources.internetprovider.persistence.repository.UserRepository;
 import eu.itdifferentcources.internetprovider.service.exception.UserNameNotFound;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-//@RequiredArgsConstructor
 
+@Primary
 @Service
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
-public UserService(UserRepository userRepository) {
+
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

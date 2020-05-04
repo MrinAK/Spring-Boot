@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,23 +17,36 @@ import java.util.Set;
 //@NoArgsConstructor(access = AccessLevel.PROTECTED)
 //@AllArgsConstructor
 //@Data
+
+/**
+ *
+ */
+
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity implements UserDetails {
 
-//    @NotBlank
-//    @Size(min = 5, max = 20)
+    @NotBlank
+    @Size(min = 5, max = 20)
     private String username;
 
 
-//    @NotBlank
-//    @Size(min = 5, max = 80)
+    @NotBlank
+    @Size(min = 5, max = 80)
     private String password;
 
-//    @NotBlank
-//    @Size(max = 50)
+    @NotBlank
+    @Size(max = 50)
     @Email
     private String email;
+
+    private boolean enabled = true;
+
+    private boolean credentialsNonExpired = true;
+
+    private boolean accountNonLocked = true;
+
+    private boolean accountNonExpired = true;
 
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -71,6 +86,7 @@ public class User extends BaseEntity implements UserDetails {
         this.roles = roles;
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -88,21 +104,21 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return accountNonExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return accountNonLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return credentialsNonExpired;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 }

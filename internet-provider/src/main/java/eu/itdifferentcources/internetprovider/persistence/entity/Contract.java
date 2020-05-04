@@ -1,12 +1,14 @@
 package eu.itdifferentcources.internetprovider.persistence.entity;
 
-import eu.itdifferentcources.internetprovider.persistence.repository.ContractRepository;
-
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.time.Instant;
 
+/**
+ *
+ */
 @Entity
 @Table(name = "contracts")
 public class Contract extends BaseEntity {
@@ -21,19 +23,26 @@ public class Contract extends BaseEntity {
 
     private Integer length;
 
-    protected Contract() {
-    }
+    @OneToOne
+    private User createdBy;
 
-    public Contract(Customer customer, Product product, Instant createdAt, Integer length) {
+    public Contract(Customer customer, Product product, Instant createdAt, Integer length, User createdBy) {
         this.customer = customer;
         this.product = product;
         this.createdAt = createdAt;
         this.length = length;
+        this.createdBy = createdBy;
     }
 
-    //
-    public Contract(Customer customer, Product product, Instant now, ContractRepository month) {
+    protected Contract() {
+    }
 
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 
     public Customer getCustomer() {

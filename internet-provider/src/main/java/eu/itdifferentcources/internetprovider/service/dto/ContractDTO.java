@@ -17,6 +17,9 @@ public class ContractDTO {
         this.month = month;
     }
 
+    public ContractDTO() {
+    }
+
     public Long getCustomerId() {
         return customerId;
     }

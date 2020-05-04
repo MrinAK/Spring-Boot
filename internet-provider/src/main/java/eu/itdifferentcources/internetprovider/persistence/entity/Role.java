@@ -7,6 +7,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
+/**
+ *
+ */
 
 @Entity
 @Table(name = "roles")
@@ -37,6 +40,7 @@ public class Role extends BaseEntity implements GrantedAuthority {
     }
 
     public enum RoleType{
-        ROLE_CUSTOMER, ROLE_ADMIN, ROLE_MODERATOR
+        ROLE_CUSTOMER, ROLE_ADMIN, ROLE_MODERATOR;
+
     }
 }

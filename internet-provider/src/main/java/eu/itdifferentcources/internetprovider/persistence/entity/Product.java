@@ -1,24 +1,42 @@
 package eu.itdifferentcources.internetprovider.persistence.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
+/**
+ *
+ */
 @Entity
 @Table(name = "products")
 public class Product extends BaseEntity {
 
     private String name;
+
     private BigDecimal fee;
+
     private Integer bandwidth;
 
-    private Product(String name, BigDecimal fee, Integer bandwidth) {
+    @OneToOne
+    private User createdBy;
+
+    private Product(String name, BigDecimal fee, Integer bandwidth, User createdBy) {
         this.name = name;
         this.fee = fee;
         this.bandwidth = bandwidth;
+        this.createdBy = createdBy;
     }
 
     protected Product() {
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 
     public String getName() {
@@ -45,7 +63,7 @@ public class Product extends BaseEntity {
         this.bandwidth = bandwidth;
     }
 
-    public static Product create(String name, BigDecimal fee, Integer bandwidth) {
-        return new Product(name, fee, bandwidth);
+    public static Product create(String name, BigDecimal fee, Integer bandwidth,User createdBy) {
+        return new Product(name, fee, bandwidth, createdBy);
     }
 }

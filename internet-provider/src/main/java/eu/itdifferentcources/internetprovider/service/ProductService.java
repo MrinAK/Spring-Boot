@@ -15,9 +15,13 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
+    private final AuthenticationFacade authenticationFacade;
+
+
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, AuthenticationFacade authenticationFacade) {
         this.productRepository = productRepository;
+        this.authenticationFacade = authenticationFacade;
     }
 
     public List<ProductDTO> findAll() {
@@ -32,7 +36,10 @@ public class ProductService {
     }
 
     public void create(ProductDTO productDTO) {
-        Product product = Product.create(productDTO.getName(), productDTO.getFee(), productDTO.getBandwidth());
+        Product product = Product.create(productDTO.getName(),
+                productDTO.getFee(),
+                productDTO.getBandwidth(),
+                authenticationFacade.getAuthentication());
         productRepository.save(product);
     }
 

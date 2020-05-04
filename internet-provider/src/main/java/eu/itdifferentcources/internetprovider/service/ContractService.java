@@ -26,10 +26,13 @@ public class ContractService {
 
     private final ContractRepository contractRepository;
 
-    public ContractService(CustomerRepository customerRepository, ProductRepository productRepository, ContractRepository contractRepository) {
+    private final AuthenticationFacade authenticationFacade;
+
+    public ContractService(CustomerRepository customerRepository, ProductRepository productRepository, ContractRepository contractRepository, AuthenticationFacade authenticationFacade) {
         this.customerRepository = customerRepository;
         this.productRepository = productRepository;
         this.contractRepository = contractRepository;
+        this.authenticationFacade = authenticationFacade;
     }
 
     public List<ContractInformationDTO> findAll() {
@@ -51,7 +54,7 @@ public class ContractService {
                             product.getFee(),
                             product.getBandwidth());
 
-                    return new ContractInformationDTO(contract.getId(),customerDTO,productDTO,contract.getLength());
+                    return new ContractInformationDTO(contract.getId(), customerDTO, productDTO, contract.getLength());
                 })
                 .collect(Collectors.toList());
     }
@@ -63,6 +66,9 @@ public class ContractService {
 
         Customer customer = customerRepository.findById(contractDTO.getCustomerId())
                 .orElseThrow(() -> new ResourceNotFound(String.format("Customer with Id %d doesn't exist", contractDTO.getCustomerId())));
-        contractRepository.save(new Contract(customer, product, Instant.now(), contractDTO.getMonth()));
+        contractRepository.save(new Contract(customer,
+                product, Instant.now(),
+                contractDTO.getMonth(),
+                authenticationFacade.getAuthentication()));
     }
 }

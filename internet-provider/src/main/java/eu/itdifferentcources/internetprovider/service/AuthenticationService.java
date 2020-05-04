@@ -47,7 +47,7 @@ public class AuthenticationService {
 
     private static final Map<Role.RoleType, Role> roles = new HashMap<>();
 
-    //Todo
+
     @PostConstruct
     protected void postConstruct() {
         roleRepository.findAll().stream().forEach(role -> roles.put(role.getName(), role));

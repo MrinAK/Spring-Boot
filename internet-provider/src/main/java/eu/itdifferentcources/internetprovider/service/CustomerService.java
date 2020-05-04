@@ -10,16 +10,26 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ *
+ */
 @Service
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
 
+    private final AuthenticationFacade authenticationFacade;
+
     @Autowired
-    public CustomerService(CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository, AuthenticationFacade authenticationFacade) {
         this.customerRepository = customerRepository;
+        this.authenticationFacade = authenticationFacade;
     }
 
+    /**
+     *
+     * @return {@link List<CustomerDTO>}
+     */
     public List<CustomerDTO> findAll() {
         return customerRepository.findAll()
                 .stream()
@@ -33,13 +43,16 @@ public class CustomerService {
     }
 
     public void create(CustomerDTO customerDTO) {
+
         Customer customer = Customer.create(
                 customerDTO.getFirstName(),
                 customerDTO.getLastName(),
                 customerDTO.getCity(),
-                customerDTO.getStreet());
+                customerDTO.getStreet(),
+                authenticationFacade.getAuthentication());
         customerRepository.save(customer);
     }
+
 
     public CustomerDTO findById(Long customerId) {
         Customer customer = customerRepository.findById(customerId)
