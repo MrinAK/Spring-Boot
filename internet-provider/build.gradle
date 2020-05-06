@@ -4,7 +4,11 @@ plugins {
     id 'java'
 }
 
+<<<<<<< HEAD
 group = 'eu.ITDC'
+=======
+group = 'eu.itdifferentcources'
+>>>>>>> 00adb2bc5ac488d43ca341c5f8f7a8a461de7395
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
