@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'eu.ITDC.interne-provider' is invalid and this project uses 'eu.ITDC.internetprovider' instead.
+* The original package name 'eu.itdc.interne-provider' is invalid and this project uses 'eu.itdc.internetprovider' instead.
 
 # Getting Started
 
