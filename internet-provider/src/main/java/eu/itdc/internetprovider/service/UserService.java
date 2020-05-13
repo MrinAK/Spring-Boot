@@ -40,14 +40,17 @@ public class UserService implements UserDetailsService {
 
     public List<UserDTO> getAll() {
         return userRepository.findAll().stream()
-                .map(u -> new UserDTO(u.getUsername(), u.getEmail()))
+                .map(user -> new UserDTO(user.getUsername(), user.getEmail()))
                 .collect(Collectors.toList());
     }
 
     public void updateRolesByUserId(UserUpdateRolesDTO userUpdateRolesDTO, Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFound(String.format("User with Id %d doesn't exist", userId)));
-        List<Role> roles = roleRepository.findAll().stream().filter(role -> userUpdateRolesDTO.getRoles().contains(role.getName().name())).collect(Collectors.toList());
+        List<Role> roles = roleRepository.findAll()
+                .stream()
+                .filter(role -> userUpdateRolesDTO.getRoles().contains(role.getName().name()))
+                .collect(Collectors.toList());
         user.setRoles(new HashSet<>(roles));
         userRepository.save(user);
     }

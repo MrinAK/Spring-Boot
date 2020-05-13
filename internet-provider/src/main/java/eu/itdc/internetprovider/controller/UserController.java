@@ -29,12 +29,8 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<Void> updateRoles
-            (@RequestBody UserUpdateRolesDTO userUpdateRolesDTO,
-             @PathVariable("userId") Long userId) {
-
+    public ResponseEntity<Void> updateRoles(@RequestBody UserUpdateRolesDTO userUpdateRolesDTO, @PathVariable("userId") Long userId) {
         userService.updateRolesByUserId(userUpdateRolesDTO, userId);
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

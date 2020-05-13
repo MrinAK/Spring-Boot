@@ -12,9 +12,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-//@NoArgsConstructor(access = AccessLevel.PROTECTED)
-//@AllArgsConstructor
-//@Data
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity implements UserDetails {

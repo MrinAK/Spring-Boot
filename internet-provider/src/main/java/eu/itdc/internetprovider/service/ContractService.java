@@ -30,7 +30,10 @@ public class ContractService {
 
     private final AuthenticationFacade authenticationFacade;
 
-    public ContractService(CustomerRepository customerRepository, ProductRepository productRepository, ContractRepository contractRepository, AuthenticationFacade authenticationFacade) {
+    public ContractService(CustomerRepository customerRepository,
+                           ProductRepository productRepository,
+                           ContractRepository contractRepository,
+                           AuthenticationFacade authenticationFacade) {
         this.customerRepository = customerRepository;
         this.productRepository = productRepository;
         this.contractRepository = contractRepository;
@@ -66,7 +69,7 @@ public class ContractService {
         Product product = productRepository.findById(contractDTO.getProductId())
                 .orElseThrow(() -> new ResourceNotFound(String.format("Product with Id %d doesn't exist", contractDTO.getProductId())));
 
-        if (product.getStatus() == ProductStatus.DELETED){
+        if (product.getStatus() == ProductStatus.DELETED) {
             throw new ResourceNotFound(String.format("Product with Id %d doesn't exist", contractDTO.getProductId()));
         }
 
@@ -88,7 +91,8 @@ public class ContractService {
 //    }
 
     public ContractDTO findByID(Long contractId) {
-        Contract contract = contractRepository.findById(contractId).orElseThrow(() -> new ResourceNotFound(String.format("Contract with Id %d doesn't exist", contractId)));
+        Contract contract = contractRepository.findById(contractId)
+                .orElseThrow(() -> new ResourceNotFound(String.format("Contract with Id %d doesn't exist", contractId)));
         return new ContractDTO(contract.getCustomer().getId(),
                 contract.getProduct().getId(),
                 contract.getLength());
