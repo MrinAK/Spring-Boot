@@ -56,12 +56,6 @@ public class ProductService {
                 product.getStatus().name());
     }
 
-//    @Transactional
-//    public void deleteById(Long contractId) {
-//        contractRepository.findById(contractId)
-//                .orElseThrow(() -> new ResourceNotFound(String.format("Contract with Id %d doesn't exist", contractId)));
-//        contractRepository.deleteById(contractId);
-//    }
     @Transactional
     public void deleteById(Long productId) {
         Product product = productRepository.findById(productId)

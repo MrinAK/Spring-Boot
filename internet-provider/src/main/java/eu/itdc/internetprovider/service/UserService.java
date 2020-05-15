@@ -51,7 +51,6 @@ public class UserService implements UserDetailsService {
 //           }catch (IllegalArgumentException e){
 //               throw  new BadRequestException();
 //           }
-//
 //       }
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFound(String.format("User with Id %d doesn't exist", userId)));

@@ -81,16 +81,8 @@ public class ContractService {
                 authenticationFacade.getAuthentication()));
     }
 
-//    public ProductDTO findById(Long productId) {
-//        Product product = productRepository.findById(productId)
-//                .orElseThrow(() ->new ResourceNotFound(String.format("Product with Id %d doesn't exist", productId)));
-//        return new ProductDTO(product.getId(),
-//                product.getName(),
-//                product.getFee(),
-//                product.getBandwidth());
-//    }
 
-    public ContractDTO findByID(Long contractId) {
+    public ContractDTO findById(Long contractId) {
         Contract contract = contractRepository.findById(contractId)
                 .orElseThrow(() -> new ResourceNotFound(String.format("Contract with Id %d doesn't exist", contractId)));
         return new ContractDTO(contract.getCustomer().getId(),

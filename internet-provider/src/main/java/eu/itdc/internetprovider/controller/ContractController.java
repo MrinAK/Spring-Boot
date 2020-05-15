@@ -39,7 +39,7 @@ public class ContractController {
     @GetMapping("/{contractId}")
     @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     public ContractDTO findById(@PathVariable("contractId") Long contractId) {
-        return contractService.findByID(contractId);
+        return contractService.findById(contractId);
     }
 
     @DeleteMapping("/{contractId}")
