@@ -24,13 +24,14 @@ public class UserController {
 
     @GetMapping("/")
     @PreAuthorize("hasRole('ADMIN')")
-    public List<UserDTO> getAll() {
-        return userService.getAll();
+    public ResponseEntity<List<UserDTO>> getAll() {
+        return ResponseEntity.ok(userService.getAll());
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<Void> updateRoles(@RequestBody UserUpdateRolesDTO userUpdateRolesDTO, @PathVariable("userId") Long userId) {
-        userService.updateRolesByUserId(userUpdateRolesDTO, userId);
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UserDTO> updateById(@PathVariable("userId") Long userId, @RequestBody UserUpdateRolesDTO userUpdateRolesDTO) {
+        userService.updateById(userId, userUpdateRolesDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

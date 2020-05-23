@@ -22,7 +22,6 @@ public class User extends BaseEntity implements UserDetails {
     @Size(min = 5, max = 20)
     private String username;
 
-
     @NotBlank
     @Size(min = 5, max = 80)
     private String password;
@@ -31,8 +30,6 @@ public class User extends BaseEntity implements UserDetails {
     @Size(max = 50)
     @Email
     private String email;
-
-    private boolean enabled = true;
 
     private boolean credentialsNonExpired = true;
 
@@ -109,6 +106,7 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public boolean isEnabled() {
+        boolean enabled = true;
         return enabled;
     }
 }

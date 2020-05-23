@@ -1,14 +1,19 @@
 package eu.itdc.internetprovider.service.dto;
 
+import java.util.List;
+
 public class UserDTO {
 
     private String username;
 
     private String email;
 
-    public UserDTO(String username, String email) {
+    private List<UserRole> roles;
+
+    public UserDTO(String username, String email, List<UserRole> roles) {
         this.username = username;
         this.email = email;
+        this.roles = roles;
     }
 
     public UserDTO() {
@@ -28,5 +33,13 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<UserRole> roles) {
+        this.roles = roles;
     }
 }
