@@ -39,14 +39,14 @@ public class ProductController {
 
     @DeleteMapping("/{productId}")
     @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
-    public ResponseEntity<Void> delete(@PathVariable("productId") Long productId){
+    public ResponseEntity<Void> deleteById(@PathVariable("productId") Long productId) {
         productService.deleteById(productId);
         return new ResponseEntity<>(HttpStatus.GONE);
     }
 
     @PutMapping("/{productId}")
     @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
-    public ProductDTO updateById(@PathVariable("productId") Long productId,@RequestBody @Validated ProductDTO productDTO) {
-        return productService.updateById(productId, productDTO);
+    public ResponseEntity<ProductDTO> updateById(@PathVariable("productId") Long productId, @RequestBody @Validated ProductDTO productDTO) {
+        return ResponseEntity.ok(productService.updateById(productId, productDTO));
     }
 }

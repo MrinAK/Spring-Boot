@@ -27,7 +27,6 @@ public class CustomerService {
     }
 
     /**
-     *
      * @return {@link List<CustomerDTO>}
      */
     public List<CustomerDTO> findAll() {

@@ -5,9 +5,9 @@ import javax.validation.Valid;
 @Valid
 public class LoginRequestDTO {
 
-private String username;
+    private String username;
 
-private String password;
+    private String password;
 
     public LoginRequestDTO(String username, String password) {
         this.username = username;

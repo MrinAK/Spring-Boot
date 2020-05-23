@@ -3,7 +3,7 @@ package eu.itdc.internetprovider.service;
 import eu.itdc.internetprovider.persistence.entity.Contract;
 import eu.itdc.internetprovider.persistence.entity.Customer;
 import eu.itdc.internetprovider.persistence.entity.Product;
-import eu.itdc.internetprovider.persistence.entity.ProductStatus;
+import eu.itdc.internetprovider.persistence.entity.Status;
 import eu.itdc.internetprovider.persistence.repository.ContractRepository;
 import eu.itdc.internetprovider.persistence.repository.CustomerRepository;
 import eu.itdc.internetprovider.persistence.repository.ProductRepository;
@@ -57,7 +57,8 @@ public class ContractService {
                     ProductDTO productDTO = new ProductDTO(product.getId(),
                             product.getName(),
                             product.getFee(),
-                            product.getBandwidth());
+                            product.getBandwidth(),
+                            product.getStatus().name());
 
                     return new ContractInformationDTO(contract.getId(), customerDTO, productDTO, contract.getLength());
                 })
@@ -69,7 +70,7 @@ public class ContractService {
         Product product = productRepository.findById(contractDTO.getProductId())
                 .orElseThrow(() -> new ResourceNotFound(String.format("Product with Id %d doesn't exist", contractDTO.getProductId())));
 
-        if (product.getStatus() == ProductStatus.DELETED) {
+        if (product.getStatus() == Status.DELETED) {
             throw new ResourceNotFound(String.format("Product with Id %d doesn't exist", contractDTO.getProductId()));
         }
 
@@ -92,8 +93,8 @@ public class ContractService {
 
     @Transactional
     public void deleteById(Long contractId) {
-        contractRepository.findById(contractId)
+        Contract contract = contractRepository.findById(contractId)
                 .orElseThrow(() -> new ResourceNotFound(String.format("Contract with Id %d doesn't exist", contractId)));
-        contractRepository.deleteById(contractId);
+        contractRepository.delete(contract);
     }
 }

@@ -1,7 +1,6 @@
 package eu.itdc.internetprovider.service;
 
 import eu.itdc.internetprovider.persistence.entity.Product;
-import eu.itdc.internetprovider.persistence.entity.ProductStatus;
 import eu.itdc.internetprovider.persistence.repository.ProductRepository;
 import eu.itdc.internetprovider.service.dto.ProductDTO;
 import eu.itdc.internetprovider.service.exception.ResourceNotFound;
@@ -48,7 +47,7 @@ public class ProductService {
 
     public ProductDTO findById(Long productId) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() ->new ResourceNotFound(String.format("Product with Id %d doesn't exist", productId)));
+                .orElseThrow(() -> new ResourceNotFound(String.format("Product with Id %d doesn't exist", productId)));
         return new ProductDTO(product.getId(),
                 product.getName(),
                 product.getFee(),
@@ -59,29 +58,29 @@ public class ProductService {
     @Transactional
     public void deleteById(Long productId) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() ->new ResourceNotFound(String.format("Product with Id %d doesn't exist", productId)));
-       product.setStatus(ProductStatus.DELETED);
-       productRepository.save(product);
+                .orElseThrow(() -> new ResourceNotFound(String.format("Product with Id %d doesn't exist", productId)));
+        product.delete();
+        productRepository.save(product);
 
     }
 
     @Transactional
     public ProductDTO updateById(Long productId, ProductDTO productDTO) {
-        Product product = productRepository.findById(productId)
-                .orElseThrow(() ->new ResourceNotFound(String.format("Product with Id %d doesn't exist", productId)));
+        Product existingProduct = productRepository.findById(productId)
+                .orElseThrow(() -> new ResourceNotFound(String.format("Product with Id %d doesn't exist", productId)));
 
         Product updatedProduct = Product.create(productDTO.getName(),
                 productDTO.getFee(),
                 productDTO.getBandwidth(),
-                null);
+                authenticationFacade.getAuthentication());
 
-        product.update(updatedProduct);
-        productRepository.save(product);
+        existingProduct.update(updatedProduct);
+        productRepository.save(existingProduct);
 
-        return new ProductDTO(product.getId(),
-                product.getName(),
-                product.getFee(),
-                product.getBandwidth(),
-                product.getStatus().name());
+        return new ProductDTO(existingProduct.getId(),
+                existingProduct.getName(),
+                existingProduct.getFee(),
+                existingProduct.getBandwidth(),
+                existingProduct.getStatus().name());
     }
 }

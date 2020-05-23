@@ -9,20 +9,20 @@ public class ProductDTO {
 
     private Long id;
 
-    private String status;
-
     @NotBlank
     @Size(min = 4, max = 100)
     private String name;
 
     @Digits(integer = 50, fraction = 2)
-    @DecimalMin(value = "0", inclusive=false)
+    @DecimalMin(value = "0", inclusive = false)
     private BigDecimal fee;
 
     @NotNull
     @Min(0)
     @Max(2000)
     private Integer bandwidth;
+
+    private String status;
 
     public ProductDTO(Long id, String name, BigDecimal fee, Integer bandwidth, String status) {
         this.id = id;
@@ -31,6 +31,7 @@ public class ProductDTO {
         this.bandwidth = bandwidth;
         this.status = status;
     }
+
     public ProductDTO(Long id, String name, BigDecimal fee, Integer bandwidth) {
         this.id = id;
         this.name = name;
@@ -38,16 +39,7 @@ public class ProductDTO {
         this.bandwidth = bandwidth;
     }
 
-
     public ProductDTO() {
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public Long getId() {
@@ -80,5 +72,13 @@ public class ProductDTO {
 
     public void setBandwidth(Integer bandwidth) {
         this.bandwidth = bandwidth;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

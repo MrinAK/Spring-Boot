@@ -17,7 +17,7 @@ public class Product extends BaseEntity {
     private User createdBy;
 
     @Enumerated(EnumType.STRING)
-    private ProductStatus status = ProductStatus.ACTIVE;
+    private Status status = Status.ACTIVE;
 
     private Product(String name, BigDecimal fee, Integer bandwidth, User createdBy) {
         this.name = name;
@@ -27,22 +27,6 @@ public class Product extends BaseEntity {
     }
 
     protected Product() {
-    }
-
-    public ProductStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(ProductStatus status) {
-        this.status = status;
-    }
-
-    public User getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(User createdBy) {
-        this.createdBy = createdBy;
     }
 
     public String getName() {
@@ -69,15 +53,33 @@ public class Product extends BaseEntity {
         this.bandwidth = bandwidth;
     }
 
-    public void update(Product updated){
-        this.name = updated.getName();
-        this.fee = updated.getFee();
-        this.bandwidth = updated.getBandwidth();
+    public User getCreatedBy() {
+        return createdBy;
     }
 
-    public static Product create(String name, BigDecimal fee, Integer bandwidth,User createdBy) {
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public void update(Product newProduct){
+        this.name = newProduct.name;
+        this.bandwidth = newProduct.bandwidth;
+        this.fee = newProduct.fee;
+    }
+
+    public static Product create(String name, BigDecimal fee, Integer bandwidth, User createdBy) {
         return new Product(name, fee, bandwidth, createdBy);
     }
 
-
+    public void delete() {
+        this.status = Status.DELETED;
+    }
 }

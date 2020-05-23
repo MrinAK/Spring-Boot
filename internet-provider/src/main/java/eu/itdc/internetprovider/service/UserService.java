@@ -31,7 +31,6 @@ public class UserService implements UserDetailsService {
         this.roleRepository = roleRepository;
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username).orElseThrow(() ->
@@ -45,18 +44,11 @@ public class UserService implements UserDetailsService {
     }
 
     public void updateRolesByUserId(UserUpdateRolesDTO userUpdateRolesDTO, Long userId) {
-//       for(String type : userUpdateRolesDTO.getRoles()){
-//           try{
-//               Role.RoleType.valueOf(type);
-//           }catch (IllegalArgumentException e){
-//               throw  new BadRequestException();
-//           }
-//       }
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFound(String.format("User with Id %d doesn't exist", userId)));
         List<Role> roles = roleRepository.findAll()
                 .stream()
-                .filter(role ->userUpdateRolesDTO.getRoles().stream().map(Enum::name).collect(Collectors.toList())
+                .filter(role -> userUpdateRolesDTO.getRoles().stream().map(Enum::name).collect(Collectors.toList())
                         .contains(role.getName().name()))
                 .collect(Collectors.toList());
         user.setRoles(new HashSet<>(roles));

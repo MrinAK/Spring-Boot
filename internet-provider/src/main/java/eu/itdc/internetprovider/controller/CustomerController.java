@@ -37,5 +37,4 @@ public class CustomerController {
     public CustomerDTO findById(@PathVariable("customerId") Long customerId) {
         return customerService.findById(customerId);
     }
-
 }

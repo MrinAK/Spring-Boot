@@ -6,9 +6,13 @@ import javax.validation.Valid;
 public class CustomerDTO {
 
     private Long id;
+
     private String firstName;
+
     private String lastName;
+
     private String city;
+
     private String street;
 
     public CustomerDTO(Long id, String firstName, String lastName, String city, String street) {
@@ -22,7 +26,7 @@ public class CustomerDTO {
     public CustomerDTO() {
     }
 
-    public Long getId(){
+    public Long getId() {
         return id;
     }
 

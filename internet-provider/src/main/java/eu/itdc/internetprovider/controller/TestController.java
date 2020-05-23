@@ -11,13 +11,13 @@ public class TestController {
 
     @PreAuthorize("hasRole('CUSTOMER')")
     @GetMapping("/customer")
-    public String testCustomer(){
+    public String testCustomer() {
         return "HELLO CUSTOMER";
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin")
-    public String testAdmin(){
+    public String testAdmin() {
         return "HELLO ADMIN";
     }
 }
