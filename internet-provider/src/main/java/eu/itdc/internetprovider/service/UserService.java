@@ -9,6 +9,7 @@ import eu.itdc.internetprovider.service.dto.UserRole;
 import eu.itdc.internetprovider.service.dto.UserUpdateRolesDTO;
 import eu.itdc.internetprovider.service.exception.ResourceNotFound;
 import eu.itdc.internetprovider.service.exception.UserNameNotFound;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,6 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,15 +30,22 @@ public class UserService implements UserDetailsService {
 
     private final RoleRepository roleRepository;
 
-    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
+    private final Duration expirationTime;
+
+    public UserService(UserRepository userRepository, RoleRepository roleRepository,@Value("${app.login.lockExpirationTime}") Duration expirationTime) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.expirationTime = expirationTime;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username).orElseThrow(() ->
+        User user = userRepository.findByUsername(username).orElseThrow(() ->
                 new UserNameNotFound(String.format("User with username %s not found", username)));
+
+        user.checkLogOutExpiration(expirationTime);
+        userRepository.save(user);
+        return user;
     }
 
     public List<UserDTO> getAll() {

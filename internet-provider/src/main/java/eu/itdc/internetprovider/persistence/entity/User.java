@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,9 +35,31 @@ public class User extends BaseEntity implements UserDetails {
 
     private boolean credentialsNonExpired = true;
 
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
     private boolean accountNonLocked = true;
 
     private boolean accountNonExpired = true;
+
+    private boolean enabled = true;
+
+    private int badLoginAttempt = 0;
+
+    public void setLastFellLoginAttempt(Instant lastFellLoginAttempt) {
+        this.lastFellLoginAttempt = lastFellLoginAttempt;
+    }
+
+    public Instant getLastFellLoginAttempt() {
+        return lastFellLoginAttempt;
+    }
+
+    private Instant lastFellLoginAttempt;
+
+    public int getBadLoginAttempt() {
+        return badLoginAttempt;
+    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
@@ -106,7 +130,22 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        boolean enabled = true;
         return enabled;
+    }
+
+    public void failLoginAttempt(Integer maxNumberOfAttempt){
+        badLoginAttempt ++;
+        lastFellLoginAttempt = Instant.now();
+        if (badLoginAttempt >= maxNumberOfAttempt){
+            accountNonLocked = false;
+        }
+    }
+
+    public void checkLogOutExpiration(Duration expirationTime) {
+        if(lastFellLoginAttempt != null && lastFellLoginAttempt.plus(expirationTime).isBefore(Instant.now())){
+            accountNonLocked = true;
+            badLoginAttempt = 0;
+            lastFellLoginAttempt = null;
+        }
     }
 }

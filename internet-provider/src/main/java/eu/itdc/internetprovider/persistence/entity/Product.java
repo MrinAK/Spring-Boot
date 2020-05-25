@@ -1,8 +1,16 @@
 package eu.itdc.internetprovider.persistence.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.envers.Audited;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
+import static org.hibernate.envers.RelationTargetAuditMode.NOT_AUDITED;
+
+@Audited
 @Entity
 @Table(name = "products")
 public class Product extends BaseEntity {
@@ -13,6 +21,14 @@ public class Product extends BaseEntity {
 
     private Integer bandwidth;
 
+
+    @CreationTimestamp
+    private Timestamp createAt;
+
+    @UpdateTimestamp
+    private Timestamp updateAt;
+
+    @Audited(targetAuditMode = NOT_AUDITED)
     @OneToOne
     private User createdBy;
 

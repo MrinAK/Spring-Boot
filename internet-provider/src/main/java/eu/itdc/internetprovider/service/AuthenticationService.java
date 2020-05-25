@@ -8,7 +8,9 @@ import eu.itdc.internetprovider.service.dto.JwtResponseDTO;
 import eu.itdc.internetprovider.service.dto.LoginRequestDTO;
 import eu.itdc.internetprovider.service.dto.SignupRequestDTO;
 import eu.itdc.internetprovider.service.util.JwtUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,6 +34,9 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     private final JwtUtils jwtUtils;
+
+    @Value("${app.login.maxNumberOfAttempt}")
+    private Integer maxNumberOfAttempt;
 
     public AuthenticationService(UserRepository userRepository,
                                  RoleRepository roleRepository,
@@ -70,11 +75,21 @@ public class AuthenticationService {
         userRepository.save(user);
     }
 
-    public JwtResponseDTO signin(LoginRequestDTO loginRequestDTO) {
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequestDTO.getUsername(),
-                        loginRequestDTO.getPassword()));
+    public JwtResponseDTO signin(LoginRequestDTO loginRequestDTO) {
+        Authentication authentication;
+        try {
+            authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequestDTO.getUsername(),
+                            loginRequestDTO.getPassword()));
+
+        } catch (BadCredentialsException ex) {
+            userRepository.findByUsername(loginRequestDTO.getUsername()).ifPresent(user -> {
+                user.failLoginAttempt(maxNumberOfAttempt);
+                userRepository.save(user);
+            });
+            throw ex;
+        }
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generatedJwtToken(authentication);
