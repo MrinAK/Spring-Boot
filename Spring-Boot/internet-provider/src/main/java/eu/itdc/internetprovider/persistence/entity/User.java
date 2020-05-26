@@ -90,6 +90,16 @@ public class User extends BaseEntity implements UserDetails {
         this.roles = roles;
     }
 
+    // TODO
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+    // TODO
+    public void setLastFellLoginAttempt(Instant lastFellLoginAttempt) {
+        this.lastFellLoginAttempt = lastFellLoginAttempt;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -139,15 +149,5 @@ public class User extends BaseEntity implements UserDetails {
             badLoginAttempt = 0;
             lastFellLoginAttempt = null;
         }
-    }
-
-    // TODO
-    public void setAccountNonLocked(boolean accountNonLocked) {
-        this.accountNonLocked = accountNonLocked;
-    }
-
-    // TODO
-    public void setLastFellLoginAttempt(Instant lastFellLoginAttempt) {
-        this.lastFellLoginAttempt = lastFellLoginAttempt;
     }
 }
