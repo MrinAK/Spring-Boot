@@ -21,7 +21,6 @@ public class Product extends BaseEntity {
 
     private Integer bandwidth;
 
-
     @CreationTimestamp
     private Timestamp createAt;
 
