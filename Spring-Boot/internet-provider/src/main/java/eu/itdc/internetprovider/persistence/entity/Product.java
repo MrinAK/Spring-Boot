@@ -21,15 +21,15 @@ public class Product extends BaseEntity {
 
     private Integer bandwidth;
 
+    @Audited(targetAuditMode = NOT_AUDITED)
+    @OneToOne
+    private User createdBy;
+
     @CreationTimestamp
     private Timestamp createAt;
 
     @UpdateTimestamp
     private Timestamp updateAt;
-
-    @Audited(targetAuditMode = NOT_AUDITED)
-    @OneToOne
-    private User createdBy;
 
     @Enumerated(EnumType.STRING)
     private Status status = Status.ACTIVE;

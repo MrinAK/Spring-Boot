@@ -30,10 +30,8 @@ public class ContractService {
 
     private final AuthenticationFacade authenticationFacade;
 
-    public ContractService(CustomerRepository customerRepository,
-                           ProductRepository productRepository,
-                           ContractRepository contractRepository,
-                           AuthenticationFacade authenticationFacade) {
+    public ContractService(CustomerRepository customerRepository, ProductRepository productRepository,
+                           ContractRepository contractRepository, AuthenticationFacade authenticationFacade) {
         this.customerRepository = customerRepository;
         this.productRepository = productRepository;
         this.contractRepository = contractRepository;
