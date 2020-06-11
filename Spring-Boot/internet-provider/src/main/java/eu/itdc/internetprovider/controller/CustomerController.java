@@ -26,14 +26,14 @@ public class CustomerController {
     }
 
     @PostMapping("/")
-    @PreAuthorize("hasRole('CUSTOMER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR', 'CUSTOMER')")
     public ResponseEntity<Void> create(@RequestBody CustomerDTO customerDTO) {
         customerService.create(customerDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/{customerId}")
-    @PreAuthorize("hasAnyRole('ADMIN' , 'MODERATOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     public CustomerDTO findById(@PathVariable("customerId") Long customerId) {
         return customerService.findById(customerId);
     }
