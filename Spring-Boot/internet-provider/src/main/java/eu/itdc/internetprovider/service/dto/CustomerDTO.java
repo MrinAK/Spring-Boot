@@ -5,6 +5,8 @@ import javax.validation.Valid;
 @Valid
 public class CustomerDTO {
 
+    private ClientType clientType;
+
     private Long id;
 
     private String firstName;
@@ -14,6 +16,21 @@ public class CustomerDTO {
     private String city;
 
     private String street;
+
+    private String companyName;
+
+    private String vatNumber;
+
+    private String responsiblePerson;
+
+    public CustomerDTO(Long id, String city, String street, String companyName, String vatNumber, String responsiblePerson) {
+        this.id = id;
+        this.city = city;
+        this.street = street;
+        this.companyName = companyName;
+        this.vatNumber = vatNumber;
+        this.responsiblePerson = responsiblePerson;
+    }
 
     public CustomerDTO(Long id, String firstName, String lastName, String city, String street) {
         this.id = id;
@@ -32,6 +49,38 @@ public class CustomerDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public ClientType getClientType() {
+        return clientType;
+    }
+
+    public void setClientType(ClientType clientType) {
+        this.clientType = clientType;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getVatNumber() {
+        return vatNumber;
+    }
+
+    public void setVatNumber(String vatNumber) {
+        this.vatNumber = vatNumber;
+    }
+
+    public String getResponsiblePerson() {
+        return responsiblePerson;
+    }
+
+    public void setResponsiblePerson(String responsiblePerson) {
+        this.responsiblePerson = responsiblePerson;
     }
 
     public String getFirstName() {

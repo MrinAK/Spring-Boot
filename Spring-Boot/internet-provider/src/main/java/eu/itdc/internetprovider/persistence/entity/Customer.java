@@ -1,8 +1,6 @@
 package eu.itdc.internetprovider.persistence.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
@@ -11,9 +9,14 @@ import javax.persistence.Table;
 @Table(name = "customers")
 public class Customer extends BaseEntity {
 
-    private String firstName;
+    @Enumerated(EnumType.STRING)
+    private ClientType clientType;
 
-    private String lastName;
+    @Embedded
+    private CustomerPhysical customerPhysical;
+
+    @Embedded
+    private CustomerLegal customerLegal;
 
     private String city;
 
@@ -22,9 +25,10 @@ public class Customer extends BaseEntity {
     @OneToOne
     private User user;
 
-    private Customer(String firstName, String lastName, String city, String street, User user) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    private Customer(CustomerPhysical customerPhysical, CustomerLegal customerLegal, ClientType clientType, String city, String street, User user) {
+        this.customerPhysical = customerPhysical;
+        this.customerLegal = customerLegal;
+        this.clientType = clientType;
         this.city = city;
         this.street = street;
         this.user = user;
@@ -37,20 +41,28 @@ public class Customer extends BaseEntity {
         return user;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public ClientType getClientType() {
+        return clientType;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setClientType(ClientType clientType) {
+        this.clientType = clientType;
     }
 
-    public String getLastName() {
-        return lastName;
+    public CustomerPhysical getCustomerPhysical() {
+        return customerPhysical;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setCustomerPhysical(CustomerPhysical customerPhysical) {
+        this.customerPhysical = customerPhysical;
+    }
+
+    public CustomerLegal getCustomerLegal() {
+        return customerLegal;
+    }
+
+    public void setCustomerLegal(CustomerLegal customerLegal) {
+        this.customerLegal = customerLegal;
     }
 
     public String getCity() {
@@ -69,7 +81,11 @@ public class Customer extends BaseEntity {
         this.street = street;
     }
 
-    public static Customer create(String firstName, String lastName, String city, String street, User user) {
-        return new Customer(firstName, lastName, city, street, user);
+    public static Customer createPhysical(String firstName, String lastName, String city, String street, User user) {
+        return new Customer(new CustomerPhysical(firstName, lastName), null, ClientType.PHYSICAL, city, street, user);
+    }
+
+    public static Customer createLegal(String companyName, String vatNumber,String responsiblePerson, String city, String street, User user) {
+        return new Customer(null,new CustomerLegal(companyName, vatNumber, responsiblePerson), ClientType.LEGAL, city, street, user);
     }
 }

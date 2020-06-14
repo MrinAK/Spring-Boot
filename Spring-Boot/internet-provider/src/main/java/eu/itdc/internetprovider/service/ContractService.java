@@ -47,12 +47,7 @@ public class ContractService {
                     Customer customer = contract.getCustomer();
                     Product product = contract.getProduct();
 
-                    CustomerDTO customerDTO = new CustomerDTO(
-                            customer.getId(),
-                            customer.getFirstName(),
-                            customer.getLastName(),
-                            customer.getCity(),
-                            customer.getStreet());
+                    CustomerDTO customerDTO = CustomerService.customerEntityToDTO(customer);
 
                     ProductDTO productDTO = new ProductDTO(product.getId(),
                             product.getName(),

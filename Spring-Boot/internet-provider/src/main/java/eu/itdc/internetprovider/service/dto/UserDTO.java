@@ -1,7 +1,9 @@
 package eu.itdc.internetprovider.service.dto;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Valid
 public class UserDTO {
 
     private String username;
