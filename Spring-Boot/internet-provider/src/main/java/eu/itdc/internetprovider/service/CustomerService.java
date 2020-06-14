@@ -33,7 +33,7 @@ public class CustomerService {
     public List<CustomerDTO> findAll() {
         return customerRepository.findAll()
                 .stream()
-                .map(customer -> customerEntityToDTO(customer))
+                .map(CustomerService::customerEntityToDTO)
                 .collect(Collectors.toList());
     }
 
@@ -71,7 +71,6 @@ public class CustomerService {
 
     public static CustomerDTO customerEntityToDTO(Customer customer) {
         if (customer.getClientType() == eu.itdc.internetprovider.persistence.entity.ClientType.PHYSICAL) {
-
             return new CustomerDTO(
                     customer.getId(),
                     customer.getCustomerPhysical().getFirstName(),
