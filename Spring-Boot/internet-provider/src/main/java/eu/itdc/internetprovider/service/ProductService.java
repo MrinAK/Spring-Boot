@@ -18,7 +18,6 @@ public class ProductService {
 
     private final AuthenticationFacade authenticationFacade;
 
-
     @Autowired
     public ProductService(ProductRepository productRepository, AuthenticationFacade authenticationFacade) {
         this.productRepository = productRepository;

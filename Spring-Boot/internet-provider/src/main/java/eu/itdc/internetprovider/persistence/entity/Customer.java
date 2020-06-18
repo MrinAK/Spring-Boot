@@ -25,7 +25,8 @@ public class Customer extends BaseEntity {
     @OneToOne
     private User user;
 
-    private Customer(CustomerPhysical customerPhysical, CustomerLegal customerLegal, ClientType clientType, String city, String street, User user) {
+    private Customer(CustomerPhysical customerPhysical, CustomerLegal customerLegal,
+                     ClientType clientType, String city, String street, User user) {
         this.customerPhysical = customerPhysical;
         this.customerLegal = customerLegal;
         this.clientType = clientType;
@@ -85,7 +86,7 @@ public class Customer extends BaseEntity {
         return new Customer(new CustomerPhysical(firstName, lastName), null, ClientType.PHYSICAL, city, street, user);
     }
 
-    public static Customer createLegal(String companyName, String vatNumber,String responsiblePerson, String city, String street, User user) {
-        return new Customer(null,new CustomerLegal(companyName, vatNumber, responsiblePerson), ClientType.LEGAL, city, street, user);
+    public static Customer createLegal(String companyName, String vatNumber, String responsiblePerson, String city, String street, User user) {
+        return new Customer(null, new CustomerLegal(companyName, vatNumber, responsiblePerson), ClientType.LEGAL, city, street, user);
     }
 }
