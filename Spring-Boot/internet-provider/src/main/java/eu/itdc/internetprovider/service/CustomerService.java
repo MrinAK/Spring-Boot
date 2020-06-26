@@ -69,7 +69,7 @@ public class CustomerService {
         return customerEntityToDTO(customer);
     }
 
-    //    TODO (?)
+    //    TODO
     public static CustomerDTO customerEntityToDTO(Customer customer) {
         if (customer.getClientType() == eu.itdc.internetprovider.persistence.entity.ClientType.PHYSICAL) {
             return new CustomerDTO(
