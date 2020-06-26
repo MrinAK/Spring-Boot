@@ -27,7 +27,7 @@ public class SpringFoxConfig {
                 .paths(PathSelectors.any())
                 .build()
                 .securityContexts(Collections.singletonList(securityContext()))
-                .securitySchemes(Arrays.asList(idToken()))
+                .securitySchemes(Collections.singletonList(idToken()))
                 .pathMapping("/");
     }
 
@@ -42,6 +42,6 @@ public class SpringFoxConfig {
     private List<SecurityReference> defaultAuth() {
         final AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
         final AuthorizationScope[] authorizationScopes = new AuthorizationScope[]{authorizationScope};
-        return Arrays.asList(new SecurityReference("Authorization", authorizationScopes));
+        return Collections.singletonList(new SecurityReference("Authorization", authorizationScopes));
     }
 }

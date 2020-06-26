@@ -54,7 +54,7 @@ public class AuthenticationService {
 
     @PostConstruct
     protected void postConstruct() {
-        roleRepository.findAll().stream().forEach(role -> roles.put(role.getName(), role));
+        roleRepository.findAll().forEach(role -> roles.put(role.getName(), role));
     }
 
     public void signup(SignupRequestDTO createUserDTO) {
@@ -83,12 +83,12 @@ public class AuthenticationService {
                     new UsernamePasswordAuthenticationToken(loginRequestDTO.getUsername(),
                             loginRequestDTO.getPassword()));
 
-        } catch (BadCredentialsException ex) {
+        } catch (BadCredentialsException exception) {
             userRepository.findByUsername(loginRequestDTO.getUsername()).ifPresent(user -> {
                 user.failLoginAttempt(maxNumberOfAttempt);
                 userRepository.save(user);
             });
-            throw ex;
+            throw exception;
         }
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
