@@ -5,7 +5,7 @@ import javax.validation.Valid;
 @Valid
 public class CustomerDTO {
 
-    private ClientType clientType;
+    private ClientTypeEnum clientType;
 
     private Long id;
 
@@ -51,11 +51,11 @@ public class CustomerDTO {
         this.id = id;
     }
 
-    public ClientType getClientType() {
+    public ClientTypeEnum getClientType() {
         return clientType;
     }
 
-    public void setClientType(ClientType clientType) {
+    public void setClientType(ClientTypeEnum clientType) {
         this.clientType = clientType;
     }
 

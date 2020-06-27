@@ -2,7 +2,7 @@ package eu.itdc.internetprovider.service;
 
 import eu.itdc.internetprovider.persistence.entity.Customer;
 import eu.itdc.internetprovider.persistence.repository.CustomerRepository;
-import eu.itdc.internetprovider.service.dto.ClientType;
+import eu.itdc.internetprovider.service.dto.ClientTypeEnum;
 import eu.itdc.internetprovider.service.dto.CustomerDTO;
 import eu.itdc.internetprovider.service.exception.ResourceNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class CustomerService {
 
     public void create(CustomerDTO customerDTO) {
 
-        if (customerDTO.getClientType() == ClientType.PHYSICAL) {
+        if (customerDTO.getClientType() == ClientTypeEnum.PHYSICAL) {
 
             Customer customer = Customer.createPhysical(
                     customerDTO.getFirstName(),
@@ -50,7 +50,7 @@ public class CustomerService {
             customerRepository.save(customer);
         }
 
-        if (customerDTO.getClientType() == ClientType.LEGAL) {
+        if (customerDTO.getClientType() == ClientTypeEnum.LEGAL) {
 
             Customer customer = Customer.createLegal(
                     customerDTO.getCompanyName(),
