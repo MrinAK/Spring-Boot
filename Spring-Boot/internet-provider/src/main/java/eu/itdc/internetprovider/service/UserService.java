@@ -5,7 +5,7 @@ import eu.itdc.internetprovider.persistence.entity.User;
 import eu.itdc.internetprovider.persistence.repository.RoleRepository;
 import eu.itdc.internetprovider.persistence.repository.UserRepository;
 import eu.itdc.internetprovider.service.dto.UserDTO;
-import eu.itdc.internetprovider.service.dto.UserRole;
+import eu.itdc.internetprovider.service.dto.UserRoleEnum;
 import eu.itdc.internetprovider.service.dto.UserUpdateRolesDTO;
 import eu.itdc.internetprovider.service.exception.ResourceNotFound;
 import eu.itdc.internetprovider.service.exception.UserNameNotFound;
@@ -55,9 +55,9 @@ public class UserService implements UserDetailsService {
                 .collect(Collectors.toList());
     }
 
-    private List<UserRole> databaseRolesToDTORoles(Set<Role> roles) {
+    private List<UserRoleEnum> databaseRolesToDTORoles(Set<Role> roles) {
         return roles.stream()
-                .map(role -> UserRole.valueOf(role.getName().name()))
+                .map(role -> UserRoleEnum.valueOf(role.getName().name()))
                 .collect(Collectors.toList());
     }
 

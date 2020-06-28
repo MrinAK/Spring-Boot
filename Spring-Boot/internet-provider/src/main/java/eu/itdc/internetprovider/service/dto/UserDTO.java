@@ -10,9 +10,9 @@ public class UserDTO {
 
     private String email;
 
-    private List<UserRole> roles;
+    private List<UserRoleEnum> roles;
 
-    public UserDTO(String username, String email, List<UserRole> roles) {
+    public UserDTO(String username, String email, List<UserRoleEnum> roles) {
         this.username = username;
         this.email = email;
         this.roles = roles;
@@ -37,11 +37,11 @@ public class UserDTO {
         this.email = email;
     }
 
-    public List<UserRole> getRoles() {
+    public List<UserRoleEnum> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<UserRole> roles) {
+    public void setRoles(List<UserRoleEnum> roles) {
         this.roles = roles;
     }
 }
