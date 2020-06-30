@@ -58,20 +58,16 @@ public class User extends BaseEntity implements UserDetails {
     protected User() {
     }
 
+    public int getBadLoginAttempt() {
+        return badLoginAttempt;
+    }
+
     public void setLastFellLoginAttempt(Instant lastFellLoginAttempt) {
         this.lastFellLoginAttempt = lastFellLoginAttempt;
     }
 
     public Instant getLastFellLoginAttempt() {
         return lastFellLoginAttempt;
-    }
-
-    public int getBadLoginAttempt() {
-        return badLoginAttempt;
-    }
-
-    public void setAccountNonLocked(boolean accountNonLocked) {
-        this.accountNonLocked = accountNonLocked;
     }
 
     public void setUsername(String username) {
@@ -133,16 +129,16 @@ public class User extends BaseEntity implements UserDetails {
         return enabled;
     }
 
-    public void failLoginAttempt(Integer maxNumberOfAttempt) {
-        badLoginAttempt++;
+    public void failLoginAttempt(Integer maxNumberOfAttempt){
+        badLoginAttempt ++;
         lastFellLoginAttempt = Instant.now();
-        if (badLoginAttempt >= maxNumberOfAttempt) {
+        if (badLoginAttempt >= maxNumberOfAttempt){
             accountNonLocked = false;
         }
     }
 
     public void checkLogOutExpiration(Duration expirationTime) {
-        if (lastFellLoginAttempt != null && lastFellLoginAttempt.plus(expirationTime).isBefore(Instant.now())) {
+        if(lastFellLoginAttempt != null && lastFellLoginAttempt.plus(expirationTime).isBefore(Instant.now())){
             accountNonLocked = true;
             badLoginAttempt = 0;
             lastFellLoginAttempt = null;
