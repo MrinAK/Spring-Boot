@@ -33,17 +33,11 @@ public class User extends BaseEntity implements UserDetails {
     @Email
     private String email;
 
-    private boolean credentialsNonExpired = true;
-
     public void setAccountNonLocked(boolean accountNonLocked) {
         this.accountNonLocked = accountNonLocked;
     }
 
     private boolean accountNonLocked = true;
-
-    private boolean accountNonExpired = true;
-
-    private boolean enabled = true;
 
     private int badLoginAttempt = 0;
 
@@ -115,7 +109,7 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return accountNonExpired;
+        return true;
     }
 
     @Override
@@ -125,12 +119,12 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return credentialsNonExpired;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return true;
     }
 
     public void failLoginAttempt(Integer maxNumberOfAttempt){
