@@ -33,6 +33,9 @@ public class User extends BaseEntity implements UserDetails {
     @Email
     private String email;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles = new HashSet<>();
+
     private boolean credentialsNonExpired = true;
 
     private boolean accountNonLocked = true;
@@ -43,22 +46,7 @@ public class User extends BaseEntity implements UserDetails {
 
     private int badLoginAttempt = 0;
 
-    public void setLastFellLoginAttempt(Instant lastFellLoginAttempt) {
-        this.lastFellLoginAttempt = lastFellLoginAttempt;
-    }
-
-    public Instant getLastFellLoginAttempt() {
-        return lastFellLoginAttempt;
-    }
-
     private Instant lastFellLoginAttempt;
-
-    public int getBadLoginAttempt() {
-        return badLoginAttempt;
-    }
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles = new HashSet<>();
 
     public User(String username, String password, String email, Set<Role> roles) {
         this.username = username;
@@ -68,6 +56,18 @@ public class User extends BaseEntity implements UserDetails {
     }
 
     protected User() {
+    }
+
+    public void setLastFellLoginAttempt(Instant lastFellLoginAttempt) {
+        this.lastFellLoginAttempt = lastFellLoginAttempt;
+    }
+
+    public Instant getLastFellLoginAttempt() {
+        return lastFellLoginAttempt;
+    }
+
+    public int getBadLoginAttempt() {
+        return badLoginAttempt;
     }
 
     public void setAccountNonLocked(boolean accountNonLocked) {
@@ -133,16 +133,16 @@ public class User extends BaseEntity implements UserDetails {
         return enabled;
     }
 
-    public void failLoginAttempt(Integer maxNumberOfAttempt){
-        badLoginAttempt ++;
+    public void failLoginAttempt(Integer maxNumberOfAttempt) {
+        badLoginAttempt++;
         lastFellLoginAttempt = Instant.now();
-        if (badLoginAttempt >= maxNumberOfAttempt){
+        if (badLoginAttempt >= maxNumberOfAttempt) {
             accountNonLocked = false;
         }
     }
 
     public void checkLogOutExpiration(Duration expirationTime) {
-        if(lastFellLoginAttempt != null && lastFellLoginAttempt.plus(expirationTime).isBefore(Instant.now())){
+        if (lastFellLoginAttempt != null && lastFellLoginAttempt.plus(expirationTime).isBefore(Instant.now())) {
             accountNonLocked = true;
             badLoginAttempt = 0;
             lastFellLoginAttempt = null;
