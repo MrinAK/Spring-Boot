@@ -41,7 +41,7 @@ public class ProductController {
     @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     public ResponseEntity<Void> deleteById(@PathVariable("productId") Long productId) {
         productService.deleteById(productId);
-        return new ResponseEntity<>(HttpStatus.GONE);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/{productId}")

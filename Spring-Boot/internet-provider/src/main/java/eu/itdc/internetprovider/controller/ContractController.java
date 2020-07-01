@@ -46,6 +46,6 @@ public class ContractController {
     @PreAuthorize("hasAnyRole('ADMIN', 'MODERATOR')")
     public ResponseEntity<Void> deleteById(@PathVariable("contractId") Long contractId) {
         contractService.deleteById(contractId);
-        return new ResponseEntity<>(HttpStatus.GONE);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
