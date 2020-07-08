@@ -20,4 +20,11 @@ public class TestController {
     public String testAdmin() {
         return "HELLO ADMIN";
     }
+
+    // Todo
+//    @PreAuthorize("hasRole('MODERATOR')")
+//    @GetMapping("/moderator")
+//    public String testModerator() {
+//        return "HELLO MODERATOR";
+//    }
 }
