@@ -1,7 +1,14 @@
 Task description:
 
 An internet provider needs a platform which will be used by customers to pay their monthly fees.
-It has three products: silver, gold and platinum.
+It has three products: 
+
+1.Silver
+
+2.Gold 
+
+3.Platinum.
+
 Each product has different bandwidth and monthly fee.
 A client can subscribe for one of those products.
 Every single client can be either a physical person or legal entity.
