@@ -1,4 +1,6 @@
-Task description:
+Task in progress:
+
+Start point of an idea ...
 
 An internet provider needs a platform which will be used by customers to pay their monthly fees.
 
