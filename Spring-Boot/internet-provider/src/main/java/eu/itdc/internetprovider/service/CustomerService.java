@@ -1,5 +1,6 @@
 package eu.itdc.internetprovider.service;
 
+import eu.itdc.internetprovider.persistence.entity.ClientType;
 import eu.itdc.internetprovider.persistence.entity.Customer;
 import eu.itdc.internetprovider.persistence.repository.CustomerRepository;
 import eu.itdc.internetprovider.service.dto.ClientTypeEnum;
@@ -71,7 +72,7 @@ public class CustomerService {
 
     //    TODO
     public static CustomerDTO customerEntityToDTO(Customer customer) {
-        if (customer.getClientType() == eu.itdc.internetprovider.persistence.entity.ClientType.PHYSICAL) {
+        if (customer.getClientType() == ClientType.PHYSICAL) {
             return new CustomerDTO(
                     customer.getId(),
                     customer.getCustomerPhysical().getFirstName(),
