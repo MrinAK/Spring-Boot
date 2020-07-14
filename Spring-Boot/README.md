@@ -25,3 +25,5 @@ When the payment is completed the customer must receive a document.
 The document type depends on customer’s type as follows the physical person receives a ticket and
 
 the legal entity - an invoice.
+
+etc. ...
