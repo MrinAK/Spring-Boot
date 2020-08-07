@@ -72,7 +72,8 @@ public class ContractService {
         Customer customer = customerRepository.findById(contractDTO.getCustomerId())
                 .orElseThrow(() -> new ResourceNotFound(String.format("Customer with Id %d doesn't exist", contractDTO.getCustomerId())));
         contractRepository.save(new Contract(customer,
-                product, Instant.now(),
+                product,
+                Instant.now(),
                 contractDTO.getMonth(),
                 authenticationFacade.getAuthentication()));
     }
