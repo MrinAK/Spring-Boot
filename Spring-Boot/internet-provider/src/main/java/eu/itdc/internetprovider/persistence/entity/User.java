@@ -144,4 +144,8 @@ public class User extends BaseEntity implements UserDetails {
             lastFellLoginAttempt = null;
         }
     }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
 }
