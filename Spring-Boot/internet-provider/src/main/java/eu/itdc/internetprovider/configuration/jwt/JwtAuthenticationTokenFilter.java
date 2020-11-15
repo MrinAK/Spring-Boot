@@ -2,6 +2,7 @@ package eu.itdc.internetprovider.configuration.jwt;
 
 import eu.itdc.internetprovider.service.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,6 +24,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtils jwtUtils;
 
+    @Qualifier("userService")
     @Autowired
     private UserDetailsService userDetailsService;
 

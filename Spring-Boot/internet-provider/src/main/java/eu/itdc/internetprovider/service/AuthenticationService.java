@@ -49,7 +49,7 @@ public class AuthenticationService {
         this.authenticationManager = authenticationManager;
         this.jwtUtils = jwtUtils;
     }
-
+    
     private static final Map<Role.RoleType, Role> roles = new HashMap<>();
 
     @PostConstruct

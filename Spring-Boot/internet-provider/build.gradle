@@ -8,6 +8,12 @@ group = 'eu.itdc'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '14'
 
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -18,7 +24,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    testCompile 'com.h2database:h2'
+//    testCompile 'com.h2database:h2'
 
     runtimeOnly 'mysql:mysql-connector-java'
 
@@ -27,10 +33,6 @@ dependencies {
 
     // https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
 
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-envers
     compile group: 'org.hibernate', name: 'hibernate-envers', version: '5.4.16.Final'
@@ -43,12 +45,14 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 
-    testImplementation('org.springframework.security:spring-security-test')
+    }
 
-}
-
-test {
-    useJUnitPlatform()
+    test {
+        useJUnitPlatform()
+    }
 }

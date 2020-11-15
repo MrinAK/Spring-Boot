@@ -24,7 +24,7 @@ public class Role extends BaseEntity implements GrantedAuthority {
         this.name = name;
     }
 
-    protected Role(){
+    protected Role() {
     }
 
     public RoleType getName() {
@@ -35,7 +35,7 @@ public class Role extends BaseEntity implements GrantedAuthority {
         this.name = name;
     }
 
-    public enum RoleType{
-        ROLE_CUSTOMER, ROLE_ADMIN, ROLE_MODERATOR
+    public enum RoleType {
+        ROLE_ADMIN, ROLE_MODERATOR, ROLE_CUSTOMER
     }
 }
