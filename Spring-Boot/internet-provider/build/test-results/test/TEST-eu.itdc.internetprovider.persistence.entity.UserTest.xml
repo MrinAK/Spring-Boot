@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="eu.itdc.internetprovider.persistence.entity.UserTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-08-16T12:20:08" hostname="DESKTOP-2N888O8" time="0.062">
+  <properties/>
+  <testcase name="lockedAccountAfter5TimesIncorrectLogin()" classname="eu.itdc.internetprovider.persistence.entity.UserTest" time="0.034"/>
+  <testcase name="successfullyLogin()" classname="eu.itdc.internetprovider.persistence.entity.UserTest" time="0.006"/>
+  <testcase name="failFirstLoginAttempt()" classname="eu.itdc.internetprovider.persistence.entity.UserTest" time="0.003"/>
+  <testcase name="checkLogOutExpirationAfterIn5Min()" classname="eu.itdc.internetprovider.persistence.entity.UserTest" time="0.003"/>
+  <testcase name="checkLogOutExpirationEndNotExpiredIn5Min()" classname="eu.itdc.internetprovider.persistence.entity.UserTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
