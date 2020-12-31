@@ -7,5 +7,14 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/internetProvider</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="internet-provider.main/Hibernate" uuid="ad853b61-230c-4c68-b73e-28cce48afcee">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/internetProvider?createDatabaseIfNotExist=true</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

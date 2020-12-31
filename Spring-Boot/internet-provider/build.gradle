@@ -52,6 +52,10 @@ dependencies {
 
     }
 
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
+    testCompile group: 'org.springframework.security', name: 'spring-security-test', version: '5.4.2'
+
+
     test {
         useJUnitPlatform()
     }
